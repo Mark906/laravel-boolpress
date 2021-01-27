@@ -3,7 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-class CreatePostersTable extends Migration
+
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +13,11 @@ class CreatePostersTable extends Migration
      */
     public function up()
     {
-        Schema::create('posters', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
-            $table->float('price');
+            $table->string('title');
+            $table->text('content');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreatePostersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posters');
+        Schema::dropIfExists('posts');
     }
 }
