@@ -11,4 +11,7 @@ class Post extends Model
     public function category() {
         return $this->belongsTo('App\Category'); //tab secondaria, belongsto
     }
+    public function tags() {
+        return $this->belongsToMany('App\Tag'); //tab secondaria, belongsto
+    }
 }
