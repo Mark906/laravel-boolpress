@@ -1,5 +1,5 @@
 <?php
-
+//php artisan make:migration add_foreign_category_posts_table --table=posts
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,8 +14,8 @@ class AddForeignCategoryPostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->unsignedBigInteger('category_id')->nullable()->after('slug');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
+            $table->unsignedBigInteger('category_id')->nullable()->after('id');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
@@ -27,7 +27,7 @@ class AddForeignCategoryPostsTable extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropForeign('posts_category_id_foreign');
+            $table->dropForeign('posts_category_id_foreign'); //pattern.
             $table->dropColumn('category_id');
         });
     }
