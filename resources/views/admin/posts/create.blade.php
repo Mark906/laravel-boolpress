@@ -25,18 +25,18 @@
                 @csrf
                 <div class="form-group">
                     <label>Titolo</label>
-                    <input type="text" name="title" class="form-control" placeholder="Inserisci il titolo" maxlength="255" required>
+                    <input type="text" name="title" class="form-control" placeholder="Inserisci il titolo" value="{{ old('title') }}" required>
                 </div>
                 <div class="form-group">
                     <label>Contenuto</label>
-                    <textarea name="content" class="form-control" rows="10" placeholder="Inizia a scrivere qualcosa..." required></textarea>
+                    <textarea name="content" class="form-control" rows="10" placeholder="Inizia a scrivere qualcosa..." value="{{ old('content') }}" required></textarea>
                 </div>
                 <div class="form-group">
                     <label>Categoria</label>
                     <select class="form-control" name="category_id">
                         <option value=""> -- seleziona categoria -- </option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">
+                            <option value="{{ $category->id }}" {{old('category_id') == $category->id ? 'selected=selected' : '' }}>
                                 {{ $category->name }}
                             </option>
                         @endforeach
